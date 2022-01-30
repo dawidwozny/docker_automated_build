@@ -1,1 +1,1 @@
-FROM hello-world
+FROM hello-world:nanoserver-1809
