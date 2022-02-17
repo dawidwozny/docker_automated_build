@@ -21,4 +21,4 @@ jobs:
       run: docker login ghcr.io -u dawidwozny -p ${{ secrets.PAT }}
       
     - name: push
-      run: ddocker push ghcr.io/dawidwozny/test:latest1
+      run: docker push ghcr.io/dawidwozny/test:latest1
