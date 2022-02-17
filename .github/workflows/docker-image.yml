@@ -16,3 +16,14 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      
+    - name: 'Build:dockerimage'
+    - uses: docker/build-push-action@v1
+      with:
+        registry: ghcr.io
+        username: "dawidwozny"
+        password: ${{ secrets.PAT }}
+        repository: dawidwozny/helloworld1
+        tags: latest 
+      
+      
