@@ -10,29 +10,15 @@ jobs:
 
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-2019
 
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . --file Dockerfile --tag ghcr.io/dawidwozny/test:latest1
+
+    - name: login to ghcr.io
+      run: docker login ghcr.io -u dawidwozny -p ${{ secrets.PAT }}
       
-    -
-      name: Set up QEMU
-      uses: docker/setup-qemu-action@v1
-      
-    -
-      name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v1
-      
-    - 
-      name: 'Build:dockerimage'
-      uses: docker/build-push-action@v2
-      with:
-        registry: ghcr.io
-        username: "dawidwozny"
-        password: ${{ secrets.PAT }}
-        repository: dawidwozny/helloworld1
-        tags: latest 
-      
-      
+    - name: push
+      run: ddocker push ghcr.io/dawidwozny/test:latest1
